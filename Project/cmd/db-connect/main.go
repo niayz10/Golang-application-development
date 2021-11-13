@@ -8,7 +8,7 @@ import (
 
 func main() {
 	ctx := context.Background()
-	urlExample := "postgresql://localhost:5432/goproject"
+	urlExample := "postgres://goproject:goproject@localhost:5432/goproject"
 	conn, err := pgx.Connect(ctx, urlExample)
 	if err != nil {
 		panic(err)
