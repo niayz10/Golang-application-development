@@ -1,6 +1,6 @@
 package models
 
-type Manga struct {
+type Book struct {
 	ID               int    `json:"id" db:"id"`
 	Title            string `json:"title" db:"title"`
 	Description      string `json:"description" db:"description"`
@@ -10,6 +10,6 @@ type Manga struct {
 	Country          string `json:"country" db:"country"`
 }
 
-type MangaFilter struct {
+type BookFilter struct {
 	Query *string `json:"query"`
 }

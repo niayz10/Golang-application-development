@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"github.com/go-redis/redis/v8"
 	"project/internal/http"
 	"project/internal/store/postgres"
 )
@@ -14,7 +15,17 @@ func main(){
 	}
 	defer store.Close()
 
-	srv := http.NewServer(context.Background(), ":8080", store)
+	red := redis.NewClient(&redis.Options{
+		Addr: "localhost:6379",
+		Password: "",
+		DB: 0,
+	})
+	srv := http.NewServer(
+		context.Background(),
+		http.WithAddress(":8080"),
+		http.WithStore(store),
+		http.WithRedis(red),
+		)
 	if err := srv.Run(); err != nil {
 		panic(err)
 	}
